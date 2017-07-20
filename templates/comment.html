@@ -1,0 +1,64 @@
+{% for com in comments %}
+<ul>
+    <li>
+        <div class="comment">
+            <div class="author">
+                <h5>{{ com.name }} | <span class="date">{{ com.date }}</span></h5>
+            </div>
+            <hr>
+            <div class="comment_text">
+                {{ com.text }}
+            </div>
+            <a href="addComment.php?comment_id={{ com.id_comment }}">Ответить</a>
+        </div>
+
+        {% for chi in com.childs %}
+         <ul>
+            <li>
+                <div class="comment">
+                    <div class="author">
+                        <h5>{{ chi.name }} | <span class="date">{{ chi.date }}</span></h5>
+                    </div>
+                    <hr>
+                    <div class="comment_text">
+                        {{ chi.text }}
+                    </div>
+                    <a href="addComment.php?comment_parent_id={{ chi.id_comment }}">Ответить</a>
+                </div>
+                {% for c in chi.childs %}
+                <ul>
+                    <li>
+                        <div class="comment">
+                            <div class="author">
+                                <h5>{{ c.name }} | <span class="date">{{ c.date }}</span></h5>
+                            </div>
+                            <hr>
+                            <div class="comment_text">
+                                {{ c.text }}
+                            </div>
+                            <a href="addComment.php?comment_parent_id={{ c.id_comment }}">Ответить</a>
+                        </div>
+                        {% for ch in c.childs %}
+                        <ul>
+                            <li>
+                                <div class="comment">
+                                    <div class="author">
+                                        <h5>{{ ch.name }} | <span class="date">{{ ch.date }}</span></h5>
+                                    </div>
+                                    <hr>
+                                    <div class="comment_text">
+                                        {{ ch.text }}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </li>
+                </ul>
+                {% endfor %}
+            </li>
+        </ul>
+        {% endfor %}
+    </li>
+</ul>
+{% endfor %}

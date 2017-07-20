@@ -1,0 +1,12 @@
+{% include 'header.html' %}
+
+{% for p in post %}
+    <h2 class="h2"><a href="./index.php?post_id={{p.post_id}}">{{p.post_title}}</a></h2>
+    <p class="infoPost">Автор поста : <a href="">{{p.post_user}}</a> / Дата создания поста : {{p.post_date}}</p>
+    <p>{{p.post_discription}}   <a href="./index.php?post_id={{p.post_id}}">читать далее...</a></p>
+    <p class="infoPost">Комментарии : (<a href="../index.php?post_id={{p.post_id}}">{{count}}</a>)</p>
+<hr>
+{% else %} цикл не получает значения!!
+{% endfor %}
+
+
