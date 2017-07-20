@@ -59,7 +59,7 @@ function build_tree_comment($data)
     return $tree;
 }
 
-function add_comment() // функция для добавления сообщений
+function add_comment_post() // функция для добавления сообщений
 {
     global $db;
     try {
@@ -68,6 +68,25 @@ function add_comment() // функция для добавления сообщ�
             $stmt->bindParam(':c_user_name', $_POST['name']); // привязывает параметр запроса к переменной POST
             $stmt->bindParam(':c_text', $_POST['text']);
             $stmt->bindParam(':c_post_id', $_POST['post_id']);
+            $stmt->execute();
+            return $stmt;
+        }
+    } catch (PDOException $e) {
+        print "Ошибка добавления в БД!: </br>" . $e->getMessage() . "<br/>";
+        die();
+    }
+}
+
+function add_parent_comment() // функция для добавления сообщений
+{
+    global $db;
+    try {
+        if (isset($_POST['name'], $_POST['text'], $_POST['post_id'], $_POST['comment_parent_id'])) { // если входший POST не NULL, то выполни и подготовь запрос из БД
+            $stmt = $db->prepare('INSERT INTO `comment` SET comment_parent_id = :c_parent_id, post_id = :c_post_id, name = :c_user_name, text = :c_text, date = NOW()');
+            $stmt->bindParam(':c_user_name', $_POST['name']); // привязывает параметр запроса к переменной POST
+            $stmt->bindParam(':c_text', $_POST['text']);
+            $stmt->bindParam(':c_post_id', $_POST['post_id']);
+            $stmt->bindParam(':c_parent_id', $_POST['comment_parent_id']);
             $stmt->execute();
             return $stmt;
         }

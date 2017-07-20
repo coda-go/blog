@@ -4,16 +4,16 @@
 <h1 class="h1">{{one.post_title}}</h1>
 <p class="infoPost">Автор поста : <a href="">{{one.post_user}}</a><br>Дата создания поста : {{one.post_date}}<br>Последнее редактирование : {{one.post_upd_date}}</p>
 <p>{{one.post_text}}</p>
-<!--<a href="addComment.php?post_id={{one.post_id}}">Оставить комментарий</a>-->
-
+<hr>
+<p>Оставить комментарий</p>
 <form action="" method="post">
-    <p>
+    <p class="infoPost">
         <label for="name">Ваше имя</label><br>
         <input type="text" name="name" id="name">
     </p>
-    <p>
+    <p class="infoPost">
         <label for="text">Текс сообщения</label><br>
-        <textarea name="text" id="text" style="margin: 0px; width: 600px; height: 150px;"></textarea>
+        <textarea name="text" id="text" style="margin: 0px; width: 300px; height: 50px;"></textarea>
     </p>
     <p><input type="hidden" name="post_id" value="{{one.post_id}}"></p>
     <button type="submit">Отправить</button>

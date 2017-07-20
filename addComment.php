@@ -5,24 +5,17 @@
  * Date: 20.07.17
  * Time: 9:14
  */
-
 require_once 'config.php';
 
-echo $twig->render("addComment.html", array('get' => $_GET['post_id']));
+if (!empty($_GET['post_id']) && ($_GET['comment_id'])){
+    echo $twig->render("addComment.html", array('post' => $_GET['post_id'], 'comment' => $_GET['comment_id']));
+}
 
-print_r($_GET);
-
-print_r($_POST);
-
-
-if(isset($_POST['name']) && ($_POST['text']) && ($_POST['post_id']))
+if(isset($_POST['name']) && ($_POST['text']) && ($_POST['post_id']) && ($_POST['comment_parent_id']))
 {
-
-    $add_comment = add_comment();
-    // echo "Данные обновлены!";
-    foreach ($_GET as $key => $id)
-    {
+    $add_comment = add_parent_comment();
+    foreach ($_GET as $key => $id) {
         print_r($id);
-        header('Location: index.php?post_id='.$id);
+        header('Location: index.php?post_id=' . $id);
     }
 }
