@@ -63,9 +63,9 @@ function add_comment_post() // функция для добавления соо
 {
     global $db;
     try {
-        if (isset($_POST['name'], $_POST['text'], $_POST['post_id'])) { // если входший POST не NULL, то выполни и подготовь запрос из БД
+        if (isset($_POST['name'], $_POST['text'], $_POST['post_id'])) {
             $stmt = $db->prepare('INSERT INTO `comment` SET post_id = :c_post_id, name = :c_user_name, text = :c_text, date = NOW()');
-            $stmt->bindParam(':c_user_name', $_POST['name']); // привязывает параметр запроса к переменной POST
+            $stmt->bindParam(':c_user_name', $_POST['name']);
             $stmt->bindParam(':c_text', $_POST['text']);
             $stmt->bindParam(':c_post_id', $_POST['post_id']);
             $stmt->execute();
@@ -77,13 +77,13 @@ function add_comment_post() // функция для добавления соо
     }
 }
 
-function add_parent_comment() // функция для добавления сообщений
+function add_parent_comment() // функция для добавления родительских сообщений
 {
     global $db;
     try {
-        if (isset($_POST['name'], $_POST['text'], $_POST['post_id'], $_POST['comment_parent_id'])) { // если входший POST не NULL, то выполни и подготовь запрос из БД
+        if (isset($_POST['name'], $_POST['text'], $_POST['post_id'], $_POST['comment_parent_id'])) {
             $stmt = $db->prepare('INSERT INTO `comment` SET comment_parent_id = :c_parent_id, post_id = :c_post_id, name = :c_user_name, text = :c_text, date = NOW()');
-            $stmt->bindParam(':c_user_name', $_POST['name']); // привязывает параметр запроса к переменной POST
+            $stmt->bindParam(':c_user_name', $_POST['name']);
             $stmt->bindParam(':c_text', $_POST['text']);
             $stmt->bindParam(':c_post_id', $_POST['post_id']);
             $stmt->bindParam(':c_parent_id', $_POST['comment_parent_id']);
@@ -95,10 +95,3 @@ function add_parent_comment() // функция для добавления со
         die();
     }
 }
-
-
-/*INSERT INTO `comment` (`id_comment`, `post_id`, `comment_parent_id`, `text`, `name`, `date`) VALUES
- (NULL, '4', NULL, 'этот коммент к id поста 4', 'user1', CURRENT_TIMESTAMP)
-
-INSERT INTO `comment` (`id_comment`, `post_id`, `comment_parent_id`, `text`, `name`, `date`) VALUES (NULL, '1', '2', 'коммент к комменту коммета поста 1', 'Василий', CURRENT_TIMESTAMP)*/
-

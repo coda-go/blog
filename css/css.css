@@ -18,9 +18,11 @@
 A:link {
     text-decoration: none; /* Убирает подчеркивание для ссылок */
 }
-A:visited { text-decoration: none; }
-A:active { text-decoration: none; }
 A:hover {
     text-decoration: underline; /* Делает ссылку подчеркнутой при наведении на нее курсора */
     color: cadetblue; /* Цвет ссылки */
+}
+.author {
+    color: darkgray;
+    font-size: 15px;
 }
