@@ -1,5 +1,5 @@
 .footer {
-    position: absolute;
+    position: center;
     bottom: 0;
     width: 99%;
     height: 60px;
@@ -25,4 +25,7 @@ A:hover {
 .author {
     color: darkgray;
     font-size: 15px;
+}
+.textarea {
+    resize: inherit;
 }

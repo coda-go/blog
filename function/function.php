@@ -95,3 +95,21 @@ function add_parent_comment() // функция для добавления ро
         die();
     }
 }
+
+function edit_select_post($id)
+{
+    global $db;
+    try{
+        if(isset($_POST['title'], $_POST['text']) )
+        { // если входший POST не NULL, то выполни и подготовь запрос из БД 
+            $stmt = $db->prepare("UPDATE `post` SET post_title = :p_title, post_text = :p_text, post_upd_date  = NOW() WHERE post_id = '$id'");
+            $stmt->bindParam(':p_title', $_POST['title']); // привязывает параметр запроса к переменной POST
+            $stmt->bindParam(':p_text', $_POST['text']);
+            $stmt->execute();
+            return $stmt;
+        }
+    }catch (PDOException $e) {
+        print "Ошибка добавления в БД!: </br>" . $e->getMessage() . "<br/>";
+        die();
+    }
+}

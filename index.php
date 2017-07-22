@@ -24,5 +24,6 @@ if (isset($_GET['post_id'])) {
 }else {
     $postAll = print_post_all();
     echo $twig->render('main.html', array('post' => $postAll));
+
 }
 

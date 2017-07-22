@@ -4,13 +4,13 @@
     <li>
         <div class="comment">
             <div class="author">
-                <h5>{{ com.name }} | <span class="date">{{ com.date }}</span></h5>
+                <h5>{{ com.name|e }} | <span class="date">{{ com.date }}</span></h5>
             </div>
             <hr>
             <div class="comment_text">
-                {{ com.text }}
+                {{ com.text|e }}
             </div>
-            <a href="addComment.php?comment_id={{ com.id_comment }}&post_id={{ pos.post_id }}">Ответить</a>
+            <h6><a href="addComment.php?comment_id={{ com.id_comment }}&post_id={{ pos.post_id }}">Ответить</a></h6>
         </div>
 
         {% for chi in com.childs %}
@@ -18,13 +18,13 @@
             <li>
                 <div class="comment">
                     <div class="author">
-                        <h5>{{ chi.name }} | <span class="date">{{ chi.date }}</span></h5>
+                        <h5>{{ chi.name|e }} | <span class="date">{{ chi.date }}</span></h5>
                     </div>
                     <hr>
                     <div class="comment_text">
-                        {{ chi.text }}
+                        {{ chi.text|e }}
                     </div>
-                    <a href="addComment.php?comment_id={{ chi.id_comment }}&post_id={{ pos.post_id }}">Ответить</a>
+                    <h6><a href="addComment.php?comment_id={{ chi.id_comment }}&post_id={{ pos.post_id }}">Ответить</a></h6>
                 </div>
                 {% for c in chi.childs %}
                 <ul>
@@ -37,7 +37,7 @@
                             <div class="comment_text">
                                 {{ c.text }}
                             </div>
-                            <a href="addComment.php?comment_id={{ c.id_comment }}&post_id={{ pos.post_id }}">Ответить</a>
+                            <h6><a href="addComment.php?comment_id={{ c.id_comment }}&post_id={{ pos.post_id }}">Ответить</a></h6>
                         </div>
                         {% for ch in c.childs %}
                         <ul>

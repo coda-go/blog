@@ -1,0 +1,7 @@
+{% for %}
+<form action="editComment.php" method="POST">
+    <p><textarea type="text" name="text" style="width: 1000px; height: 300px;">{{p.post_text}}</textarea></p>
+    <p><input type="hidden" name="comment_id" value="{{  }}"/><h6>Номер поста: {{p.post_id}}</h6></p>
+    <p><input type="submit" value="Сохранить изменения"></p>
+</form>
+{% endfor %}
